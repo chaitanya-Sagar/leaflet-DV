@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="ccc" ng-controller="mainController" >
+   <head>
+      <meta charset="UTF-8">
+      <META HTTP-EQUIV="Cache-Control" CONTENT="No-Cache,Must-Revalidate,No-Store">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Live</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="leaflet.css"  crossorigin="anonymous" />
+    
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="rSlider.min.css" />
+    <script src="leaflet.js" ></script>
+    <script src="jquery-3.2.1.min.js" ></script>
+    <script src="jquery-ui.js" ></script>
+    <script src='omnivore.js'></script>
+    <script src='leaflet-heat.js'></script>
+    <script src='rSlider.min.js'></script>
+    <script src='kml.js'></script>
+    <script src='data.js'></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="hdr"> 
+        <div class="row1">
+            <button onclick="btnClick(event,'activebtn')" class="helth active">Active</button>
+            <button onclick="btnClick(event,'cnfbtn')" class="helth"> Confirmed</button>
+            <button onclick="btnClick(event,'deathbtn')" class="helth" >Deaths</button>
+            <button onclick="btnClick(event,'rcbtn')" class="helth" >Recovered</button>
+        </div>
+        <div class="row2">
+            <span>Time Slider form 12 Mar 2020 to 30 Mar 2020, selected Data 23 Mar 2020</span>
+            <div class="">
+            <i class="fa fa-play" id="playbtn" onclick="play()" ></i>
+            <i class="fa fa-pause" id="pausebtn" onclick="pause()" style="display: none;"></i>
+            </div>
+            <div class="">
+         <input  onclick="currentVal(this.value)" type="range" value="" id="sampleSlider" />
+        </div>
+        </div>
+        </div>
+        <div class="holder">
+            <i class="fa fa-globe"  title="Toggle map" onclick="shtilemap()"></i>
+
+        <div class="overlay overlay2">
+            <select name="" id="togleVs">
+                <option value="polygon">Wards</option>
+                <option value="bubble">Bubble</option>
+                <option value="heat">Heat</option>
+            </select>
+        </div>
+        <div class="overlay overlay1">
+            <div id="legedtTitle">Active</div>
+            <div>
+                <ul class="mapLegend">
+                    <li> <i class="fa fa-square"></i> 1 - 9  </li>
+                    <li><i class="fa fa-square"></i> 10 - 90  </li>
+                    <li><i class="fa fa-square"></i> 100 - 999  </li>
+                  
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="overlay2">Legent</div>
+        <div class="overlay3">Footer</div> -->
+    <div id="map"></div>
+</div>
+    
+    
+    
+    
+    
+    <script src="script.js"></script>
+    <!-- <script src="hotspotMarkers.js"></script> -->
+</body>
+</html>
