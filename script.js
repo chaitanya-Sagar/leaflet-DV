@@ -2,6 +2,12 @@
 // Creating a tile layer usually involves setting the URL template for the tile images
 var osmUrl = "https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=ebe9e8643d4f439b90fd4b885c3e8171",
   osmAttrib ='&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+
+  Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+	maxZoom: 20,
+	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+}),
+
   osm = L.tileLayer(osmUrl, {
     maxZoom: 18,
     attribution: osmAttrib
@@ -9,11 +15,11 @@ var osmUrl = "https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apik
   var colors = ['#ff0000', '#ff8300', '#ffbb00','#ffd400'];
 var visType = "polygon"; // heat bubble
 
-$('#togleVs').val(visType) 
+// $('#togleVs').val(visType) 
 
   var rand=''
   var josnWard;
-var map = L.map("map").setView([26.8467, 80.9462], 12).addLayer(osm);
+var map = L.map("map").setView([26.8467, 80.9462], 12).addLayer(Stadia_AlidadeSmoothDark);
 var opt = {
     onEachFeature: function (feature, layer) {console.log(feature)}
 }
@@ -188,8 +194,17 @@ var getCentroid2 = function (arr) {
   var sixSignedArea = 3 * twoTimesSignedArea;
   return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
 }
-$('#togleVs').on('change',function(){
-  visType = $('#togleVs').val()
+$('#togleVs i').on('click',function(){
+
+  visType = $(this).attr('data-type')
+  $('#togleVs i').each(function(d,e){
+    if($(e).hasClass('active')){
+      $(e).removeClass('active')
+    }
+  })
+
+  $(this).addClass('active')
+
   refreshMap()
 })
 var heatLay 
@@ -261,9 +276,9 @@ let caseount = ward[0][severty]
 
    if(visType === 'heat'){
 
-     heatLay.addLatLng([layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng, .9])
+     heatLay.addLatLng([layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng, .1])
 
-     heatLay.setOptions({"gradient":{0.4: rand, 0.65: rand, 1: rand}})
+     heatLay.setOptions({"gradient":{0.4: 'green', 0.6: 'yellow', 1: 'red'},'radius':20,'minOpacity':.8})
   }else
   if(visType === 'polygon'){
 
@@ -301,9 +316,5 @@ if(visType === 'polygon'){
 }//end of refresh map
 
 $(document).ready(function(){
-
-  refreshMap()
-
+refreshMap()
 })
-
-   

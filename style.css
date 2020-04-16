@@ -31,7 +31,22 @@ html,body{
     font-size: 30px !important;
     cursor: pointer;
 }
-#togleVs:hover{ opacity: 1; cursor: pointer; }
+.btnHolder {
+    color: #000000;
+    background: white;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.btnHolder i:hover{opacity: 1;cursor: pointer;}
+.btnHolder i.active{ opacity: 1;}
+.btnHolder i{
+    padding: 8px 12px;
+    border-right: 1px solid #ccc;
+    opacity: .5;
+    
+}
+
+/* #togleVs:hover{ opacity: 1; cursor: pointer; }
 #togleVs{ 
     background: #ffffff;
     border: 0px solid;
@@ -39,7 +54,7 @@ html,body{
     width: 150px;
     border-radius: 4px;
     opacity: .5;
-}
+} */
  .row1 button:first-child{background: #ff6161;}
  .row1 button:nth-child(2){background: #ff940e;}
  .row1 button:nth-child(3){background: red;}
